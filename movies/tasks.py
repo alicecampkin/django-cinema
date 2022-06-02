@@ -38,18 +38,21 @@ def fetch_movies() -> None:
     for movie in movies:
         obj, created = Movie.objects.get_or_create(
             api_id=movie["id"],
-            title=movie["title"]
+            title=movie["title"],
+            release_date=datetime.strptime(movie["release_date"], "%Y-%m-%d")
         )
+
+        if created:
+            logging.info(f"Creating movie: {movie} ")
 
         obj.poster_path = movie.get("poster_path", None)
         obj.backdrop_path = movie.get("backdrop_path", None)
-        obj.release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d")
         obj.popularity = movie.get("popularity", None)
         obj.overview = movie.get("overview", None)
 
         obj.save()
 
-        genres = Genre.objects.filter(api_id__in=movie["genres"])
+        genres = Genre.objects.filter(api_id__in=movie["genre_ids"])
 
         for genre in genres:
             obj.genres.add(genre)

@@ -1,7 +1,8 @@
 from django.test import TestCase
-from .models import Movie
+from .models import Genre, Movie
 
 from datetime import datetime
+
 
 class TestMovie(TestCase):
 
@@ -26,5 +27,24 @@ class TestMovie(TestCase):
     def test_str(self):
         expected = "test movie"
         actual = self.movie.title
+
+        self.assertEqual(expected, actual)
+
+
+class TestGenre(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.genre = Genre(name="Western", api_id=1)
+
+    def test_has_name(self):
+        self.assertEqual(self.genre.name, "Western")
+
+    def test_has_api_id(self):
+        self.assertEqual(self.genre.api_id, 1)
+
+    def test_str(self):
+        expected = "Western"
+        actual = str(self.genre)
 
         self.assertEqual(expected, actual)
