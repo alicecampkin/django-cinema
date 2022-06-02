@@ -1,2 +1,7 @@
 django
 django-environ
+requests
+types-requests
+mypy
+flake8
+black
