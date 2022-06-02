@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+
+    {% include 'partials/featured.html' %}
+
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-3 p-2">
+            <div class="card">
+                <img src="{{ movie.thumbnail_url }}" alt="{{ movie.title }}" class=" position-relative">
+                <div class="image-overlay"></div>
+                <h4 class="movie-list-title">{{movie.title}}</h4>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+</div>
+
+{% endblock %}
