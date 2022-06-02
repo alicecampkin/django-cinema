@@ -13,12 +13,8 @@ def list_movies(request):
             Value("https://image.tmdb.org/t/p/w500"), F("poster_path"))
     )
 
-    featured_movie = movies.first()
-
     context = {
-        "featured_movie": featured_movie,
-        "featured_movie_image": f"https://image.tmdb.org/t/p/original{featured_movie.backdrop_path}",
-        "movies": movies[1:]
+        "movies": movies
     }
 
     return render(request, "list_movies.html", context)
