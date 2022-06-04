@@ -17,4 +17,4 @@ def list_movies(request):
         "movies": movies
     }
 
-    return render(request, "list_movies.html", context)
+    return render(request, "movies/list_movies.html", context)
