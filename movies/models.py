@@ -1,4 +1,5 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 
 class Genre(models.Model):
@@ -13,6 +14,9 @@ class Movie(models.Model):
 
     api_id = models.IntegerField(unique=True)
     title = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='title',
+                         editable=True, always_update=True)
+
     overview = models.TextField(blank=True, null=True)
 
     popularity = models.FloatField(blank=True, null=True)
