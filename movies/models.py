@@ -14,8 +14,12 @@ class Movie(models.Model):
 
     api_id = models.IntegerField(unique=True)
     title = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from='title',
-                         editable=True, always_update=True)
+    slug = AutoSlugField(
+        populate_from='title',
+        editable=True,
+        always_update=True,
+        unique=True
+    )
 
     overview = models.TextField(blank=True, null=True)
 
@@ -30,7 +34,9 @@ class Movie(models.Model):
     active = models.BooleanField(default=False)
     deleted = models.BooleanField(default=False)
 
-    genres = models.ManyToManyField(to=Genre, related_name="movies")
+    genres = models.ManyToManyField(
+        to=Genre, related_name="movies", blank=True
+    )
 
     def __str__(self):
         return self.title
