@@ -7,12 +7,13 @@
 
     <div class="movie-list">
         {% for movie in movies %}
-        <div class="movie-card">
-            <img src="{{ movie.thumbnail_url }}" alt="{{ movie.title }}">
-            <div class="image-overlay"></div>
-            <h4 class="movie-list-title">{{movie.title}}</h4>
-
-        </div>
+        <a href="{{movie.get_absolute_url}}">
+            <div class="movie-card">
+                <img src="{{ movie.thumbnail_url }}" alt="{{ movie.title }}">
+                <div class="image-overlay"></div>
+                <h4 class="movie-list-title">{{movie.title}}</h4>
+            </div>
+        </a>
         {% endfor %}
     </div>
 

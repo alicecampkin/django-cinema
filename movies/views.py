@@ -18,3 +18,18 @@ def list_movies(request):
     }
 
     return render(request, "movies/list_movies.html", context)
+
+
+def movie_detail(request, slug):
+    movie = Movie.objects.get(slug=slug)
+
+    backdrop_path = f"https://image.tmdb.org/t/p/original{movie.backdrop_path}"
+    poster_path = f"https://image.tmdb.org/t/p/w500{movie.poster_path}"
+
+    context = {
+        "movie": movie,
+        "backdrop": backdrop_path,
+        "poster_path": poster_path
+    }
+
+    return render(request, "movies/movie_detail.html", context)
