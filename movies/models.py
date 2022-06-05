@@ -3,6 +3,7 @@ from autoslug import AutoSlugField
 
 from django.urls import reverse
 
+
 class Genre(models.Model):
     name = models.CharField(max_length=100)
     api_id = models.IntegerField(unique=True)
